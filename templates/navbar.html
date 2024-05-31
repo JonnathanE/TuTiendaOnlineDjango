@@ -42,15 +42,17 @@
     <div class="collapse navbar-collapse order-lg-1" id="navMenu">
       <ul class="navbar-nav mx-auto text-center">
         <li class="nav-item px-2 py-2">
-          <a class="nav-link text-uppercase text-dark" href="{% url 'Home' %}"
+          <a
+            class="nav-link text-uppercase text-dark {% if request.path == '/' %}nav-active{% endif %}"
+            href="{% url 'Home' %}"
             >home</a
           >
         </li>
         <li class="nav-item px-2 py-2">
           <a
-            class="nav-link text-uppercase text-dark"
+            class="nav-link text-uppercase text-dark {% if request.path == '/services/' %}nav-active{% endif %}"
             href="{% url 'Services' %}"
-            >collection</a
+            >services</a
           >
         </li>
         <li class="nav-item px-2 py-2">

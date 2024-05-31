@@ -57,6 +57,10 @@ body {
     border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
 }
 
+.nav-active {
+    color: var(--pink) !important;
+}
+
 /* header */
 #header {
     background: url(../images/banner-img-1.jpg) top/cover no-repeat;
