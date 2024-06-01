@@ -1,0 +1,48 @@
+{% extends "master.html" %}
+{% load static %}
+{% block contenido %}
+{% include "navbar.html" %}
+<section style="padding-top: 130px">
+    <div class="container">
+        <div class="row g-3">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">{{category}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3 ">
+            <div class="d-flex align-items-center justify-content-center flex-wrap gap-3">
+                {% for post in posts %}
+                    <div class="card border-0 col-md-6 col-lg-4 bg-transparent my-3 shadow-sm">
+                        <img src="{{post.image.url}}" alt="" style="height: 200px;">
+                        <div class="card-body px-0">
+                            <h4 class="card-title">
+                                {{post.title}}
+                            </h4>
+                            <p class="card-text mt-3 text-muted">
+                                {{post.content}}
+                            </p>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                  <span class="fw-bold">Author: </span>{{post.author}}
+                                </small>
+                            </p>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                  <span class="fw-bold">Categories: </span>
+                                  {% for category in post.categories.all %}
+                                    {{category.name}},
+                                  {% endfor %}
+                                </small>
+                            </p>
+                            <a href="#" class="btn">Read More</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% include "footer.html" %}
+{% endblock %}

@@ -61,7 +61,7 @@
           >
         </li>
         <li class="nav-item px-2 py-2">
-          <a class="nav-link text-uppercase text-dark" href="{% url 'Blog' %}"
+          <a class="nav-link text-uppercase text-dark {% if request.path|slice:':6' == '/blog/' %}nav-active{% endif %}" href="{% url 'Blog' %}"
             >blogs</a
           >
         </li>

@@ -7,7 +7,6 @@ from apps.WebApp import views
 urlpatterns = [
     path("", views.home, name="Home"),
     path("store", views.store, name="Store"),
-    path("blog", views.blog, name="Blog"),
     path("contact", views.contact, name="Contact"),
 ]
 
