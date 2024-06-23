@@ -9,7 +9,3 @@ def home(request):
 
 def store(request):
     return HttpResponse("Store")
-
-
-def contact(request):
-    return HttpResponse("Contact")

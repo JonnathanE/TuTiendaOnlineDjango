@@ -14,20 +14,27 @@ import os
 from pathlib import Path
 from typing import List
 
+import environ
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# environ init
+env = environ.Env()
+
+# Take environment variables from .env file
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-^6go%11(x&aqnyzq=-*b7i_@$u(e17uq!&i217myo7dhqjyn%c"
+SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS: List[str] = []
+ALLOWED_HOSTS: List[str] = env.list("ALLOWED_HOSTS", default=[])
 
 
 # Application definition
@@ -42,6 +49,7 @@ INSTALLED_APPS = [
     "apps.WebApp",
     "apps.services",
     "apps.blog",
+    "apps.contact",
 ]
 
 MIDDLEWARE = [
@@ -86,14 +94,7 @@ WSGI_APPLICATION = "TuTiendaOnlineDjango.wsgi.application"
 # }
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "TuTiendaOnlineDjango",
-        "USER": "postgres",
-        "PASSWORD": "1234",
-        "HOST": "127.0.0.1",
-        "PORT": "5433",
-    }
+    "default": env.db(),
 }
 
 
@@ -141,3 +142,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# condig email
+# https://docs.djangoproject.com/en/3.2/topics/email/
+EMAIL_BACKEND = env("EMAIL_BACKEND")
+EMAIL_HOST = env("EMAIL_HOST")
+EMAIL_PORT = env("EMAIL_PORT")
+EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS")
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")
+# SERVER_EMAIL = "TuTiendaOnline <tutiendaonline@gmail.com>"
