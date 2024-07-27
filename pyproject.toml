@@ -5,4 +5,4 @@ line-length = 88
 profile = "black"
 
 [tool.mypy]
-exclude = ['apps/services/migrations']
+exclude = ['apps/services/migrations', 'apps/store/migrations']

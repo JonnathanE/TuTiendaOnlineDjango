@@ -29,7 +29,7 @@ repos:
   rev: v1.10.0
   hooks:
     - id: mypy
-      exclude: 'apps/services/migrations'
+      exclude: 'apps'
 
 # - repo: local
 #   hooks:
